@@ -67,123 +67,54 @@ body {
     /*overflow-y: hidden;*/
 }
 
-#addressForm {
-    width: 100%;
-}
-
-#siteForm {
-    width: 100%;
-}
-
-#myDivAdd {
-    visibility: hidden;/*visible;*/
-    background: white;
-    /*width: 50%;*/
-    z-index: 10;
-    position: absolute;
-    width: 50%;
-}
-
-#div_loadmyslider/*, 
-#address_imgmyslider, 
-#img_loadmyslider*/ {
-    /*animation:fade 2s infinite;
-    -webkit-animation:fade 2s infinite;*/
-}
-
-@keyframes fade
-{
-    0% {opacity:0}
-    33.333% { opacity: 0}
-    66.666% { opacity: 0}
-    100% { opacity: 1}
-}
-    
-#checkboxAutolist, #checkboxRandomPoryadok {
-    font-size: 150%;
-}
-    
-#buttonPrev, #buttonNext {
-    font-size: 150%;
-}
-
-#buttonSkrytb, #buttonOtkrytb {
-    font-size: 300%;
-}
-
-#mytable tr td.clicked {
-    background: yellow;
-}
-
-#mytable {
-    /*height: fixed;*/
-    border: 1px solid black;
-    table-layout: fixed;
-    width:100%;
-    /*display: table-cell;*/
-    /*display: flex;*/
-}
-
-#mytable tr {
-    /*display: table-cell;*/
-}
-
-#mytable tr td {
-    background-color: white;
-    word-wrap:break-word;
-    display: table-cell;
-    cursor: pointer;
-    font-size: 200%;
-}
-
-#mytable tr td .currentItem {
-    background-color: yellow;
-    /*word-wrap:break-word;
-    display: table-cell;*/
-}
-
-.scroll-table-body {
-    /*display: flex;*/
-    height: 250px;
-    overflow-x: auto;
-}
-
-
-div#div_carnav {
-    margin: -10px 0;
-    padding: 20px;
-    width: 20%;
-    height: 90%;
-    background: white;
-    border-left: 1px solid black;
-    text-align: right;
-    /*display: inline-block;*/
-    position: absolute;
-    float: right;
-    right: 0;
-    visibility: 'visible';
-}
-
 img {
     max-width:auto; 
     height:100%;
 }
 
-#buttonSkrytb {
-    /*z-index: 0;*/
-    /*position: absolute;*/
-    /*left: -100px;*/
-    /*top: 20px;*/
+img ~ div.vlevo{
+  width: 40%;
+  height: 100%;
+  background-color: green;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.3;
+  text-align: center;
+  /*vertical-align: middle;*/
+  z-index: 20;
+}
+      
+img ~ div.vpravo {
+  width: 40%;
+  height: 100%;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.3;
+  text-align: center;
+  /*vertical-align: middle;*/
+  z-index: 30;
+  float: right;
+}
+      
+img ~ div.center {
+  width: 20%;
+  height: 100%;
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 40%;
+  opacity: 0.3;
+  clear: both;
 }
 
-#buttonOtkrytb {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    visibility: hidden;
-}
-
-
+#nameIcon {
+   font-size: xx-large;
+   display: block;
+}  
+  
 </style>
 <script type="text/javascript" defer="" src="https://yandex.st/jquery/1.9.1/jquery.min.js"></script>
 <script>
@@ -198,7 +129,6 @@ var flagSkrytb = false;
 var isClicked = false;
 var flagRandomPoryadok = true;
 var prevClickedItem = '';
-
 
 document.addEventListener('keydown', function(){
     console.log('Success onkeydown');
@@ -764,71 +694,6 @@ var urls = ["https://azbyka.ru/days/assets/img/icons/73/p1d5c5kmvt1ukl2osnab4cob
 "https://azbyka.ru/days/storage/images/icons-of-our-lady/345/p1bt6mtb9g17vg1j9m1bs5md6fs63.jpg"];
 
 
-
-var first = urls[0];
-// p1d5c5kmvt1ukl2osnab4cob3i3.jpg
-
-var last = urls[urls.length - 1];
-// p1dfaf1108qv617km6c21qtpbhi7.jpg
-
-urls.forEach(function(item, index, array) {
-  console.log(item, index);
-});
-
-function funcButtonAdd(){
-    console.log("funcButtonAdd()");
-    myDivAdd.style.visibility="visible";
-}
-
-function buttonFormCancel(){
-    console.log("buttonFormCancel()");
-    myDivAdd.style.visibility="hidden";
-}
-
-function buttonFormAdd(){
-    console.log("buttonFormAdd()");
-    myDivAdd.style.visibility="hidden";
-    
-    console.log("addressForm.value = " + addressForm.value);
-    urls.push(addressForm.value);
-    sites.push(siteForm.value);
-    let num = urls.length - 1;
-    let tr = document.createElement("tr");
-    tr.innerHTML = '<td id="td-' + num + '" clicked="false" item="' + num + '" onclick="aclick(this);"><p>' + urls[urls.length - 1] + '</p></td>';
-    //tr.innerHTML = '<td id="td-' + index + '" clicked="false" item="' + index + '" onclick="aclick(this);"><p>' + urls[index] + '</p></td>';
-    mytable.appendChild(tr);
-}
-
-function funcButtonRemove(){
-    console.log("funcButtonRemove()");
-    //urls[urls.length - 1];
-    document.getElementById('mytable').deleteRow(urls.length-1);
-    urls.pop();
-    sites.pop();
-    //document.getElementsById("td-"+urls.length-1).remove();
-    
-
-    
-    //let el = document.getElementById('td-' + urls.length - 1);
-    //el.remove(); // ?????? ??????? div ? ??????????????? 'div-02'
-    /*for(let i = 0; i < urls.length; i ++){
-        let el = document.getElementById('td-' + urls.length - 1);
-        el.remove(); // ?????? ??????? div ? ??????????????? 'div-02'
-    }*/
-    //urls[currentItem].splice(currentItem, 1);
-    //sites[currentItem].splice(currentItem, 1);
-    //mytable.
-}
-
-function clearAll() {
-    console.log("clearAll");
-    urls.splice(0, urls.length);
-    sites.splice(0, sites.length);
-    while(mytable.rows.length > 0) {
-        mytable.deleteRow(0);
-    }
-}
-
 function change(in_currentItem){
     currentItem = in_currentItem;
     if(flagRandomPoryadok){
@@ -848,21 +713,8 @@ function getRandomInt(max) {
 
 function checkboxRandomPoryadokClick(){
     console.log("checkboxRandomPoryadokClick()");
-    //let num = getRandomInt(urls.length);
-    //currentItem = num;
-    //console.log("currentItem = " + currentItem);
     flagRandomPoryadok = checkboxRandomPoryadok.checked;
     console.log("flagRandomPoryadok = " + flagRandomPoryadok);
-    /*if(checkboxRandomPoryadokClick.checked){
-        flagRandomPoryadok = true;
-        console.log("flagRandomPoryadok = " + flagRandomPoryadok);
-        
-    }else{
-        flagRandomPoryadok = false;
-        console.log("flagRandomPoryadok = " + flagRandomPoryadok);
-    }*/
-    
-    //change();
 }
 
 function aclick(in_this) 
@@ -883,28 +735,6 @@ function aclick(in_this)
     //$("#address_imgmyslider").removeAttr("href").attr("href", address_site);
     //$("#img_loadmyslider").removeAttr("src").attr("src", iconurl);
     change(currentItem);
-}
-
-function addToTable()
-{
-    stranicas.forEach(function(item, index, array) {
-        console.log(item, index);
-        var tr = document.createElement("tr");
-        //tr.innerHTML = '<td onclick="aclick();"><a href="' + urls[index] + '" >' + urls[index] + '</a></td>';
-        tr.innerHTML = '<td id="td-' + index + '" clicked="false" item="' + index + '" onclick="aclick(this);"><p>' + stranicas[index] + '</p></td>';
-        mytable.appendChild(tr);
-    });
-}
-
-function tableChange()
-{
-    console.log("tableChange");
-    for( let i = 0; i < urls.length; i++){
-        $("#td-" + i).removeAttr("class");//.attr("class", "unclicked");
-    }
-    $("#td-" + currentItem).removeAttr("class").attr("class", "clicked");
-    //$("#td-" + currentItem).focus();
-    //document.getElementById("#td-20").focus();
 }
 
 function timerChange()
@@ -967,7 +797,6 @@ function funcNext()
     //$("#address_imgmyslider").removeAttr("href").attr("href", address_site);
     //$("#img_loadmyslider").removeAttr("src").attr("src", iconurl);
     change(currentItem);
-    tableChange();
 }
 
 function funcPrev()
@@ -984,7 +813,6 @@ function funcPrev()
     //$("#address_imgmyslider").removeAttr("href").attr("href", address_site);
     //$("#img_loadmyslider").removeAttr("src").attr("src", iconurl);
     change(currentItem);
-    tableChange();
 }
 
 function sleep(ms) {
@@ -1008,8 +836,6 @@ function autolist() {
         isRun = false;
     }
 }
-
-
 
 async function myslider(){
     console.log('myslider');
@@ -1061,8 +887,6 @@ async function myslider(){
             }*/
             
             change(currentItem);
-            tableChange();
-            /*$("#mytable tr td .currentItem").*/
             console.log(iconurl);
             console.log(address_site);
             await sleep(timerValue);
@@ -1077,9 +901,26 @@ async function myslider(){
             }
         }
     }
-
 }
 
+function vlevoClick(){
+    console.log("vlevoClick();");
+    funcPrev();
+}
+        
+function vpravoClick(){
+    console.log("vpravoClick();");
+    funcNext();
+}
+        
+function centerClick(){
+    console.log("centerClick();");
+    settings();
+}
+
+function settings(){
+    console.log("settings");
+}
 
 
 </script>
@@ -1087,67 +928,12 @@ async function myslider(){
 </head>
 
 <body>
-
-<div class="cont clearfix">
-
-    <div id="myDivAdd" >
-        <p>
-        <label>картинка: </label>
-        <input id="addressForm" type="text" name="q" value="addressFormValue" />
-        </p>
-        <p><label>куда ведет: </label>
-        <input id="siteForm" type="text" name="q" value="siteFormValue"/>
-        </p>
-        <button id="btnFormAdd" onclick="buttonFormAdd();">????????</button>
-        <button id="btnFormCancel" onclick="buttonFormCancel();">????????</button>
-    </div>
-
-    <div id="div_carnav" class="car-nav" hidden="hidden">
-        <button id="buttonSkrytb" onclick="skrytb();" value=">">></button>
-        <button id="buttonOtkrytb" onclick="otkrytb();" value=""><</button>
-        <p>
-            <input id="checkboxAutolist" type="checkbox" checked="checked" onclick="autolist();">авто</input>
-            <input id="checkboxRandomPoryadok" type="checkbox" checked="checked" onclick="checkboxRandomPoryadokClick();">случайная</input>
-        </p>
-        <p>
-            <button id="buttonPrev" onclick="funcPrev();" disabled>назад</button>
-            <button id="buttonNext" onclick="funcNext();" disabled>вперед</button>
-        </p>
-        <p>
-            <span>Таймер</span>
-            <INPUT id="timer" TYPE="RANGE" MIN="1000" MAX="10000" STEP="500" onchange="timerChange();" VALUE="5000">
-        </p>
-            
-        <!-- <p>что-то написано</p> -->
-        <!--<button id="clearAllButton" onclick="clearAll();">????????</button>
-        <button id="addButton" onclick="funcButtonAdd();" value="+">+</button>
-        <button id="removeButton" onclick="funcButtonRemove();" value="-">-</button>-->
-        <div class="scroll-table-body">
-
-            <table id="mytable">
-                <tr></tr>
-            </table>
-        </div>
-    </div>
-
-    <div id="slider">
-        <div class="slideshow"></div>
-            <div id="div_loadmyslider">
-                <a id="address_imgmyslider" target="_blank" href="https://azbyka.ru/days/menology/ikons">
-                    <img id="img_loadmyslider" title="" src="https://azbyka.ru/days/storage/images/icons-of-our-lady/345/p1bt6mtb9g17vg1j9m1bs5md6fs63.jpg"/>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-
-
-</div>
-
-<style>
-
-</style>
-
+     <img id="img_loadmyslider" title="" src="https://azbyka.ru/days/storage/images/icons-of-our-lady/345/p1bt6mtb9g17vg1j9m1bs5md6fs63.jpg"/>
+     <span id="nameIcon">название</span>
+     <div class="vlevo" onclick="vlevoClick();"></div>
+     <div class="center" onclick="centerClick();"></div>
+     <div class="vpravo" onclick="vpravoClick();"></div>
+</body>
 <script>
 
 window.onload = function() {
