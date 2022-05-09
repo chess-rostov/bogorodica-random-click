@@ -705,6 +705,8 @@ function change(in_currentItem){
     $("#img_loadmyslider").removeAttr("title").attr("title", img_title);
     $("#img_loadmyslider").removeAttr("src").attr("src", iconurl);
     $("#address_imgmyslider").removeAttr("href").attr("href", address_site);
+    var el = document.getElementById("nameIcon");
+    el.innerHTML = img_title;
 }
 
 function getRandomInt(max) {
